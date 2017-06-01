@@ -8,6 +8,10 @@ const PolygonLookup = require('polygon-lookup');
 
 const datapath = config.imports.whosonfirst.datapath;
 
+const placetypes = ['neighbourhood', 'macrohood', 'locality', 'localadmin',
+  'borough', 'county', 'macrocounty', 'region', 'macroregion', 'dependency',
+  'country', 'continent'];
+
 const features = [];
 
 function hasWikiLatLon(properties) {
@@ -29,9 +33,9 @@ function getWikiLatLon(properties) {
   }
 }
 
-function doLocalities(lookup) {
+function doPlacetypes(lookup) {
   console.log('id|lat|lon|iso country|poly country|link');
-  ['county', 'region'].forEach((placetype) => {
+  placetypes.forEach((placetype) => {
     whosonfirst.metadataStream(datapath).create(placetype)
       .pipe(whosonfirst.parseMetaFiles())
       .pipe(whosonfirst.isNotNullIslandRelated())
@@ -56,13 +60,13 @@ function doLocalities(lookup) {
           const poly_country = poly.properties['iso:country'];
           const data_country = wofData.properties['iso:country'];
 
-          console.log(`${id}|${name}|${wikiLatLon.lat}|${wikiLatLon.lon}|${data_country}|${poly_country}|https://whosonfirst.mapzen.com/spelunker/id/${id}/`);
+          console.log(`${id}|${placetype}|${name}|${wikiLatLon.lat}|${wikiLatLon.lon}|${data_country}|${poly_country}|https://whosonfirst.mapzen.com/spelunker/id/${id}/`);
 
         }
 
-      }))
+      }));
 
-  })
+  });
 
 }
 
@@ -78,5 +82,5 @@ whosonfirst.metadataStream(datapath).create('country')
     features.push(feature);
   }))
   .on('finish', function() {
-    doLocalities(new PolygonLookup( { features: features } ));
+    doPlacetypes(new PolygonLookup( { features: features } ));
   });
