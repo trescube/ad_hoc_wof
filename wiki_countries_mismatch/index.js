@@ -34,7 +34,7 @@ function getWikiLatLon(properties) {
 }
 
 function doPlacetypes(lookup) {
-  console.log('id|lat|lon|iso country|poly country|link');
+  console.log('id|placetype|lat|lon|iso country|poly country|link');
   placetypes.forEach((placetype) => {
     whosonfirst.metadataStream(datapath).create(placetype)
       .pipe(whosonfirst.parseMetaFiles())
