@@ -1,0 +1,29 @@
+{
+  "name": "neighbourhood_polygons",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "trescube",
+  "license": "MIT",
+  "dependencies": {
+    "area-polygon": "^1.0.1",
+    "csv-parse": "^1.1.0",
+    "lodash": "^4.17.4",
+    "lower-case": "^1.1.4",
+    "pelias-config": "^2.10.0",
+    "pelias-whosonfirst": "^2.16.0",
+    "polygon": "^1.0.2",
+    "polygon-lookup": "^2.2.0",
+    "remove-accents": "^0.4.0",
+    "request": "^2.79.0",
+    "simplify-js": "^1.2.1",
+    "through2": "^2.0.1",
+    "through2-filter": "^2.0.0",
+    "through2-map": "^2.0.0",
+    "through2-sink": "^1.0.0",
+    "vec2": "^1.6.0"
+  }
+}
